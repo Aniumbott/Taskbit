@@ -1,28 +1,123 @@
-import { Group, Modal, Button } from "@mantine/core";
+import { Group, Modal, Button, Input } from "@mantine/core";
 import React, { useState } from "react";
 import RichtextEdit from "./RichtextEdit";
+import { Trash } from "tabler-icons-react";
 
 function TodoItem(props: any) {
   const todoList = props.todoList;
   const setTodoList = props.setTodoList;
   const id = props.id;
-
+  const [readable, setReadable] = useState(true);
   const [opened, setOpened] = useState(false);
+  const [todoData, setTodoData] = useState(todoList[id].data);
 
   return (
     <div>
       <Modal
         opened={opened}
+        title="Todo Details"
         onClose={() => setOpened(false)}
-        title={todoList[id].caption}
       >
-        <RichtextEdit />
+        <Input
+          className="todo-caption"
+          variant="filled"
+          placeholder={todoList[id].caption}
+          disabled={readable}
+          onChange={(e: any) => {
+            todoList[id].caption = e.target.value;
+          }}
+        />
+        <RichtextEdit
+          readOnly={readable}
+          todoData={todoData}
+          setTodoData={setTodoData}
+          id={id}
+        />
+        <div className="modal-buttons">
+          <Button
+            className="edit-save-delete"
+            onClick={() => {
+              readable ? setReadable(false) : setReadable(true);
+              todoList[id].data = todoData;
+              setTodoList([...todoList]);
+            }}
+          >
+            {readable ? "Edit" : "Save"}
+          </Button>
+
+          <Button
+            className="edit-save-delete"
+            color="red"
+            onClick={() => {
+              todoList.splice(id, 1);
+              setTodoList([...todoList]);
+              setOpened(false);
+            }}
+          >
+            <Trash />
+          </Button>
+        </div>
       </Modal>
-      <Group position="center">
-        <Button color={todoList[id].color} onClick={() => setOpened(true)}>
-          {todoList[id].caption}
+
+      <Group className="todo-item" position="center">
+        <div
+          className="todo-color"
+          style={{ backgroundColor: todoList[id].color }}
+          onClick={() => {
+            todoList[id].status =
+              todoList[id].status === "done" ? "remaining" : "done";
+            setTodoList([...todoList]);
+            console.log(todoList[id]);
+          }}
+        ></div>
+        <Button
+          className="todo-data"
+          variant="default"
+          onClick={() => setOpened(true)}
+        >
+          <p>&nbsp;{todoList[id].caption}</p>
         </Button>
       </Group>
+      <style>{`
+        .todo-item{
+          margin-top: 1rem;
+          min-height: 4rem;
+        }
+
+        .todo-caption{
+          width: fit-content;
+          margin: 0.5rem 0;
+          pading: 0.5rem;
+        }
+
+          .todo-data{
+            position: absolute;
+            left: 0;
+            margin-left: 2rem;
+            border-radius: 0;
+            max-width: calc(100% - 2rem);
+            min-width: calc(100% - 2rem);
+            min-height: 4rem;
+          }
+          .todo-color{
+            position: absolute;
+            left: 0;
+            min-height: 4rem;
+            min-width: 2rem;
+          }
+
+          .modal-buttons{
+            padding: 0.5rem 0;
+            minwidth:100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+          }
+
+          .edit-save-delete{
+            margin-left: 0.5rem;
+          }
+        `}</style>
     </div>
   );
 }

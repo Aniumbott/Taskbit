@@ -1,11 +1,14 @@
 import React from "react";
-import { Button } from "@mantine/core";
+import { ActionIcon, Button } from "@mantine/core";
+import { Plus } from "tabler-icons-react";
 
 function CreateTodo(props: any) {
   const { colorScheme, toggleColorScheme } = props;
   return (
     <div className="create-todo-container">
-      <Button>CreateTodo</Button>
+      <ActionIcon variant="filled" color="blue" onClick={() => {}}>
+        <Plus />
+      </ActionIcon>
       <style>
         {`
             .create-todo-container {

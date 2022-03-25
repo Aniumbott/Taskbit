@@ -7,8 +7,8 @@ function ThemeToggle(props: any) {
 
   return (
     <ActionIcon
-      variant="outline"
-      color={dark ? "yellow" : "blue"}
+      variant="filled"
+      color={dark ? "blue" : "gray"}
       onClick={() => {
         toggleColorScheme();
         console.log(colorScheme);
@@ -20,7 +20,7 @@ function ThemeToggle(props: any) {
         {`.toggle{
             margin-bottom: 1rem;
                 top: 0;
-                left : 0;
+                left: 0;
             }`}
       </style>
       {dark ? <Sun size={18} /> : <MoonStars size={18} />}

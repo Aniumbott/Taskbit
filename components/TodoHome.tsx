@@ -10,10 +10,16 @@ function TodoHome(props: any) {
 
   const [todoList, setTodoList] = React.useState([
     {
-      caption: "yolo",
-      value: "",
-      color: "",
-      status: "",
+      caption: "lore vvdsfvv",
+      data: "llvlsdfv",
+      color: "purple",
+      status: "done",
+    },
+    {
+      caption: "aniket Rana",
+      data: "vsvds",
+      color: "red",
+      status: "done",
     },
   ]);
 

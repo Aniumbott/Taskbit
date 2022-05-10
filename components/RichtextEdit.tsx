@@ -1,16 +1,19 @@
-import { useState } from "react";
-import { RichTextEditor } from "@mantine/rte";
-
-const initialValue =
-  "<p>Your initial <b>html value</b> or an empty string to init editor without value</p>";
+import dynamic from "next/dynamic";
 
 function RichtextEdit(props: any) {
   const { readOnly, todoData, setTodoData } = props;
+  const RichTextEdit = dynamic(import("@mantine/rte"), {
+    ssr: false,
+    loading: () => <p>Loading ...</p>,
+  });
+
   return (
-    <RichTextEditor
+    <RichTextEdit
       readOnly={readOnly}
       value={todoData}
-      onChange={setTodoData}
+      onChange={(e) => {
+        console.log(e);
+      }}
     />
   );
 }

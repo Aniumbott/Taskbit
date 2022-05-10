@@ -1,7 +1,7 @@
 import { Group, Modal, Button, Input } from "@mantine/core";
-import React, { useState } from "react";
-import RichtextEdit from "./RichtextEdit";
+import React, { useEffect, useState } from "react";
 import { Trash } from "tabler-icons-react";
+import RichtextEdit from "./RichtextEdit";
 
 function TodoItem(props: any) {
   const todoList = props.todoList;
@@ -27,12 +27,13 @@ function TodoItem(props: any) {
             todoList[id].caption = e.target.value;
           }}
         />
-        <RichtextEdit
-          readOnly={readable}
-          todoData={todoData}
-          setTodoData={setTodoData}
-          id={id}
-        />
+        <div className="richtext">
+          <RichtextEdit
+            readOnly={readable}
+            todoData={todoData}
+            setTodoData={setTodoData}
+          />
+        </div>
         <div className="modal-buttons">
           <Button
             className="edit-save-delete"

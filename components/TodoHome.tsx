@@ -41,7 +41,7 @@ function TodoHome(props: any) {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: space-around;
             }
           `}</style>

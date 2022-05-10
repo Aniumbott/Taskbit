@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionIcon, Button } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
 import { Plus } from "tabler-icons-react";
 
 function CreateTodo(props: any) {

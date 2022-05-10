@@ -1,6 +1,6 @@
 import { Group, Modal, Button, Input } from "@mantine/core";
 import React, { useEffect, useState } from "react";
-import { Trash } from "tabler-icons-react";
+import { Trash, SwitchHorizontal } from "tabler-icons-react";
 import dynamic from "next/dynamic";
 
 // temp variable for todo data
@@ -81,6 +81,13 @@ function TodoItem(props: any) {
       </Modal>
 
       <Group className="todo-item" position="center">
+        <Button
+          className="todo-data"
+          variant="default"
+          onClick={() => setOpened(true)}
+        >
+          <p>&nbsp;{todoList[id].caption}</p>
+        </Button>
         <div
           className="todo-color"
           style={{ backgroundColor: todoList[id].color }}
@@ -90,14 +97,9 @@ function TodoItem(props: any) {
             setTodoList([...todoList]);
             console.log(todoList[id]);
           }}
-        ></div>
-        <Button
-          className="todo-data"
-          variant="default"
-          onClick={() => setOpened(true)}
         >
-          <p>&nbsp;{todoList[id].caption}</p>
-        </Button>
+          <SwitchHorizontal color="white" />
+        </div>
       </Group>
       <style>{`
         .todo-item{
@@ -118,13 +120,19 @@ function TodoItem(props: any) {
             border-radius: 0;
             max-width: calc(100% - 2rem);
             min-width: calc(100% - 2rem);
+            border-radius: 0.5rem;
             min-height: 4rem;
           }
           .todo-color{
             position: absolute;
-            left: 0;
+            right: 0;
             min-height: 4rem;
             min-width: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0 0.5rem 0.5rem 0;
+
           }
 
           .modal-buttons{

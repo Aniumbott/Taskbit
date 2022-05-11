@@ -22,9 +22,10 @@ function ThemeToggle(props: any) {
       {/* Style */}
       <style>
         {`.toggle{
-            margin-bottom: 1rem;
-                top: 0;
-                left: 0;
+            margin: 1rem;
+            position: fixed;
+                bottom: 0;
+                right: 0;
             }`}
       </style>
     </ActionIcon>

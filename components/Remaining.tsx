@@ -1,31 +1,34 @@
 import React from "react";
-import { Text } from "@mantine/core";
+import { Divider, Text } from "@mantine/core";
 import TodoItem from "./TodoItem";
-import { useState } from "react";
-import { useEffect } from "react";
 
+// Main Function
 function Remaining(props: any) {
-  const todoList = props.todoList;
-  const setTodoList = props.setTodoList;
+  const { todoList, setTodoList } = props;
 
   return (
     <div className="remaining-container">
+      {/* Title */}
       <Text align="center" size="xl">
         Remaining
       </Text>
-      <hr />
+
+      {/* HR */}
+      <Divider size={5} style={{ margin: "1rem 0" }} />
+
+      {/* List */}
       <div className="todo-list">
         {todoList.map((todo: any, id: number) => {
-          console.log(todo, id);
           if (todo.status === "remaining") {
             return (
-              // <div className=""></div>
               <TodoItem id={id} todoList={todoList} setTodoList={setTodoList} />
             );
           }
           id += 1;
         })}
       </div>
+
+      {/* Style */}
       <style>
         {`
                 .remaining-container {

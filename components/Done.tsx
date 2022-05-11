@@ -1,30 +1,35 @@
-import { Text } from "@mantine/core";
-import React, { useEffect } from "react";
+import { Divider, Text } from "@mantine/core";
+import React from "react";
 import TodoItem from "./TodoItem";
-import { useState } from "react";
 
+// MAin Function
 function Done(props: any) {
-  const todoList = props.todoList;
-  const setTodoList = props.setTodoList;
+  const { todoList, setTodoList } = props;
 
   return (
     <div className="done-container">
+      {/* Title */}
       <Text align="center" size="xl">
         Done
       </Text>
-      <hr />
+
+      {/* HR */}
+      <Divider size={5} style={{ margin: "1rem 0" }} />
+
+      {/* List */}
       <div className="todo-list">
         {todoList.map((todo: any, id: number) => {
-          console.log(todo, id);
+          console.log(todo.status);
           if (todo.status === "done") {
             return (
-              // <div className=""></div>
               <TodoItem id={id} todoList={todoList} setTodoList={setTodoList} />
             );
           }
           id += 1;
         })}
       </div>
+
+      {/* Style */}
       <style>
         {`
                 .done-container {

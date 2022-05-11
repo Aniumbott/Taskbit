@@ -1,6 +1,7 @@
-import { ActionIcon, useMantineColorScheme } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
 import { Sun, MoonStars } from "tabler-icons-react";
 
+// Main Function
 function ThemeToggle(props: any) {
   const { colorScheme, toggleColorScheme } = props;
   const dark = colorScheme === "dark";
@@ -16,6 +17,9 @@ function ThemeToggle(props: any) {
       className="toggle"
       title="Toggle color scheme"
     >
+      {dark ? <Sun size={18} /> : <MoonStars size={18} />}
+
+      {/* Style */}
       <style>
         {`.toggle{
             margin-bottom: 1rem;
@@ -23,7 +27,6 @@ function ThemeToggle(props: any) {
                 left: 0;
             }`}
       </style>
-      {dark ? <Sun size={18} /> : <MoonStars size={18} />}
     </ActionIcon>
   );
 }

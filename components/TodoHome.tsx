@@ -18,11 +18,6 @@ function TodoHome(props: any) {
     JSON.parse(getFromStorage("todoList") || "[]")
   );
 
-  // Updating data to localstorage
-  useEffect(() => {
-    window.localStorage.setItem("todoList", JSON.stringify(todoList));
-  }, [todoList]);
-
   return (
     <div>
       {/* Logo Image */}

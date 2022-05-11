@@ -1,5 +1,5 @@
 import { Group, Modal, Button, Input, ColorInput } from "@mantine/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Trash,
   SwitchHorizontal,
@@ -8,33 +8,33 @@ import {
 } from "tabler-icons-react";
 import dynamic from "next/dynamic";
 
-// temp variable for todo data
-let tododata = "";
-
-// Richtext Editor Component
-function RichtextEdit(props: any) {
-  const { readOnly, todoData } = props;
-  const RichTextEdit = dynamic(import("@mantine/rte"), {
-    ssr: false,
-    loading: () => <p>Loading ...</p>,
-  });
-  return (
-    <RichTextEdit
-      readOnly={readOnly}
-      value={todoData}
-      onChange={(e) => {
-        tododata = e;
-      }}
-    />
-  );
-}
-
 // TodoItem Component
 function TodoItem(props: any) {
   const { todoList, setTodoList, id } = props;
   const [readable, setReadable] = useState(true);
   const [opened, setOpened] = useState(false);
   const [todoData, setTodoData] = useState(todoList[id].data);
+
+  // temp variable for todo data
+  let tododata = todoList[id].data;
+
+  // Richtext Editor Component
+  function RichtextEdit(props: any) {
+    const { readOnly } = props;
+    const RichTextEdit = dynamic(import("@mantine/rte"), {
+      ssr: false,
+      loading: () => <p>Loading ...</p>,
+    });
+    return (
+      <RichTextEdit
+        readOnly={readOnly}
+        value={tododata}
+        onChange={(e) => {
+          tododata = e;
+        }}
+      />
+    );
+  }
 
   // Event Handlers
   const shiftUp = (id: any) => {
@@ -61,6 +61,10 @@ function TodoItem(props: any) {
     todoList[id].status = todoList[id].status === "done" ? "remaining" : "done";
     setTodoList([...todoList]);
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   // Main Component
   return (
@@ -105,16 +109,15 @@ function TodoItem(props: any) {
           ]}
         />
         <div className="richtext">
-          <RichtextEdit readOnly={readable} todoData={todoData} />
+          <RichtextEdit readOnly={readable} />
         </div>
         <div className="modal-buttons">
           <Button
             className="edit-save-delete"
             onClick={() => {
-              readable ? setReadable(false) : setReadable(true);
-              setTodoData(tododata);
-              todoList[id].data = todoData;
+              todoList[id].data = tododata;
               setTodoList([...todoList]);
+              readable ? setReadable(false) : setReadable(true);
             }}
           >
             {readable ? "Edit" : "Save"}

@@ -68,6 +68,7 @@ function TodoItem(props: any) {
   // Main Component
   return (
     <div>
+      {/* Pop Up Modal */}
       <Modal
         opened={opened}
         title="Todo Details"
@@ -135,14 +136,17 @@ function TodoItem(props: any) {
           </Button>
         </div>
       </Modal>
+
+      {/* Todo Item */}
       <Group className="todo-item" position="center">
         <Button
-          className="todo-data"
+          className="todo-caption-button"
           variant="default"
           onClick={() => setOpened(true)}
         >
-          <p>&nbsp;{todoList[id].caption}</p>
+          <p>{todoList[id].caption}</p>
         </Button>
+
         {/* Left buttons */}
         <div
           className="todo-color"
@@ -176,8 +180,8 @@ function TodoItem(props: any) {
             onClick={() => shiftDown(id)}
             className="todo-chevron"
           />
-          {/* Right Buttons */}
         </div>
+
         {/* Right buttons */}
         <div
           className="todo-color border"
@@ -207,13 +211,13 @@ function TodoItem(props: any) {
         .todo-color-input{
           margin: 0.5rem 0;
         }
-        .todo-data{
+        .todo-caption-button{
           position: absolute;
           left: 0;
           margin-left: 2rem;
           border-radius: 0;
-          max-width: calc(100% - 2rem);
-          min-width: calc(100% - 2rem);
+          max-width: calc(100% - 4rem);
+          min-width: calc(100% - 4rem);
           min-height: 4rem;
         }
         .todo-color{

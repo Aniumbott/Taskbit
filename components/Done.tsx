@@ -19,10 +19,14 @@ function Done(props: any) {
       {/* List */}
       <div className="todo-list">
         {todoList.map((todo: any, id: number) => {
-          console.log(todo.status);
           if (todo.status === "done") {
             return (
-              <TodoItem id={id} todoList={todoList} setTodoList={setTodoList} />
+              <TodoItem
+                id={id}
+                todoList={todoList}
+                setTodoList={setTodoList}
+                key={id}
+              />
             );
           }
           id += 1;

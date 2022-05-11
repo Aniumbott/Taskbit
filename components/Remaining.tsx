@@ -21,7 +21,12 @@ function Remaining(props: any) {
         {todoList.map((todo: any, id: number) => {
           if (todo.status === "remaining") {
             return (
-              <TodoItem id={id} todoList={todoList} setTodoList={setTodoList} />
+              <TodoItem
+                id={id}
+                todoList={todoList}
+                setTodoList={setTodoList}
+                key={id}
+              />
             );
           }
           id += 1;

@@ -13,7 +13,6 @@ function TodoItem(props: any) {
   const { todoList, setTodoList, id } = props;
   const [readable, setReadable] = useState(true);
   const [opened, setOpened] = useState(false);
-  const [todoData, setTodoData] = useState(todoList[id].data);
 
   // temp variable for todo data
   let tododata = todoList[id].data;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CreateTodo from "./CreateTodo";
 import Done from "./Done";
 import Remaining from "./Remaining";
@@ -7,20 +7,21 @@ import ThemeToggle from "./ThemeToggle";
 // Main Function
 function TodoHome(props: any) {
   const { colorScheme, toggleColorScheme } = props;
-  const [todoList, setTodoList] = React.useState([
-    {
-      caption: "lore vvdsfvv",
-      data: "llvlsdfv",
-      color: "#7950f2",
-      status: "done",
-    },
-    {
-      caption: "aniket Rana",
-      data: "vsvds",
-      color: "#fa5252",
-      status: "done",
-    },
-  ]);
+
+  // Get todo data from localStorage
+  const getFromStorage = (key: any) => {
+    if (typeof window !== "undefined") {
+      return window.localStorage.getItem(key);
+    }
+  };
+  const [todoList, setTodoList] = React.useState(
+    JSON.parse(getFromStorage("todoList") || "[]")
+  );
+
+  // Updating data to localstorage
+  useEffect(() => {
+    window.localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   return (
     <div>

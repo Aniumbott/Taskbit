@@ -1,9 +1,6 @@
+// Modules
 import type { NextPage } from "next";
 import { useState } from "react";
-import Head from "next/head";
-import TodoHome from "../components/TodoHome";
-import GitHubCorner from "../components/GitHubCorner";
-
 import styles from "../styles/Home.module.css";
 import { Paper } from "@mantine/core";
 import {
@@ -11,8 +8,17 @@ import {
   ColorSchemeProvider,
   ColorScheme,
 } from "@mantine/core";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
+
+// Components
+import Head from "next/head";
+import TodoHome from "../components/TodoHome";
+import GitHubCorner from "../components/GitHubCorner";
+import SignIn from "../components/SignIn";
 
 const Home: NextPage = () => {
+  const [isloged] = useAuthState(auth);
   const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
@@ -32,20 +38,26 @@ const Home: NextPage = () => {
       </Head>
 
       <GitHubCorner />
-
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
-      >
-        <MantineProvider theme={{ colorScheme }}>
-          <Paper className={styles.paper}>
-            <TodoHome
-              colorScheme={colorScheme}
-              toggleColorScheme={toggleColorScheme}
-            />
-          </Paper>
-        </MantineProvider>
-      </ColorSchemeProvider>
+      <>
+        {isloged ? (
+          <ColorSchemeProvider
+            colorScheme={colorScheme}
+            toggleColorScheme={toggleColorScheme}
+          >
+            <MantineProvider theme={{ colorScheme }}>
+              <Paper className={styles.paper}>
+                <TodoHome
+                  colorScheme={colorScheme}
+                  toggleColorScheme={toggleColorScheme}
+                />
+              </Paper>
+            </MantineProvider>
+          </ColorSchemeProvider>
+        ) : (
+          <SignIn />
+        )}
+      </>
+      <SignIn />
     </div>
   );
 };

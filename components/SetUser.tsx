@@ -8,9 +8,17 @@ import { useState } from "react";
 // Main function
 function SetUser() {
   // User State
+  const currentUser =
+    auth.currentUser != null
+      ? auth.currentUser
+      : {
+          email: "",
+          uid: "",
+          todoList: [],
+        };
   const [user, setUser] = useState({
-    gmail: auth.currentUser.email,
-    id: auth.currentUser.uid,
+    gmail: currentUser.email,
+    id: currentUser.uid,
     todoList: [
       {
         caption: "New Todo",
@@ -24,9 +32,13 @@ function SetUser() {
   // Get from DB
   useEffect(() => {
     const getdoc = async () => {
-      const usr = await getDoc(doc(db, "users", auth.currentUser.uid));
+      const usr = await getDoc(doc(db, "users", currentUser.uid));
       if (usr.exists()) {
-        setUser(usr.data());
+        setUser({
+          gmail: usr.data().gmail,
+          id: usr.data().id,
+          todoList: usr.data().todoList,
+        });
         // console.log(user);
       } else {
         const addUser = async () => {

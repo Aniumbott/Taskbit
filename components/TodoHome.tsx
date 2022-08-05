@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../pages/firebase";
 import CreateTodo from "./CreateTodo";
 import Done from "./Done";
 import Remaining from "./Remaining";
-import ThemeToggle from "./ThemeToggle";
+import { Button } from "@mantine/core";
 
 // Main Function
 function TodoHome(props: any) {
-  const { colorScheme, toggleColorScheme } = props;
-
   // Get todo data from localStorage
   const getFromStorage = (key: any) => {
     if (typeof window !== "undefined") {
@@ -17,6 +17,10 @@ function TodoHome(props: any) {
   const [todoList, setTodoList] = React.useState(
     JSON.parse(getFromStorage("todoList") || "[]")
   );
+
+  function logOut() {
+    signOut(auth);
+  }
 
   return (
     <div>
@@ -54,12 +58,10 @@ function TodoHome(props: any) {
       {/* Create a new todo */}
       <CreateTodo todoList={todoList} setTodoList={setTodoList} />
 
-      {/* Theme Toggle */}
-      <ThemeToggle
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
-      />
-
+      {/* SignOut */}
+      <Button color="red" onClick={logOut} className="log-out">
+        Sign Out
+      </Button>
       {/* Style */}
       <style>{`
 
@@ -71,6 +73,13 @@ function TodoHome(props: any) {
                 flex-wrap: wrap;
                 align-items: flex-start;
                 justify-content: space-around;
+            }
+
+            .log-out {
+              position: fixed;
+              left: 0;
+              bottom: 0;
+              margin: 1rem;
             }
           `}</style>
     </div>

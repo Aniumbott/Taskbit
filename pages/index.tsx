@@ -16,6 +16,7 @@ import Head from "next/head";
 import TodoHome from "../components/TodoHome";
 import GitHubCorner from "../components/GitHubCorner";
 import SignIn from "../components/SignIn";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Home: NextPage = () => {
   const [isloged] = useAuthState(auth);
@@ -38,26 +39,30 @@ const Home: NextPage = () => {
       </Head>
 
       <GitHubCorner />
-      <>
-        {isloged ? (
-          <ColorSchemeProvider
-            colorScheme={colorScheme}
-            toggleColorScheme={toggleColorScheme}
-          >
-            <MantineProvider theme={{ colorScheme }}>
-              <Paper className={styles.paper}>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider theme={{ colorScheme }}>
+          <Paper className={styles.paper}>
+            <>
+              {isloged ? (
                 <TodoHome
                   colorScheme={colorScheme}
                   toggleColorScheme={toggleColorScheme}
                 />
-              </Paper>
-            </MantineProvider>
-          </ColorSchemeProvider>
-        ) : (
-          <SignIn />
-        )}
-      </>
-      <SignIn />
+              ) : (
+                <SignIn />
+              )}
+            </>
+            {/* Theme Toggle */}
+            <ThemeToggle
+              colorScheme={colorScheme}
+              toggleColorScheme={toggleColorScheme}
+            />
+          </Paper>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </div>
   );
 };

@@ -1,26 +1,45 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../pages/firebase";
 import CreateTodo from "./CreateTodo";
 import Done from "./Done";
 import Remaining from "./Remaining";
 import { Button } from "@mantine/core";
+import { db } from "../pages/firebase";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 // Main Function
 function TodoHome(props: any) {
-  // Get todo data from localStorage
-  const getFromStorage = (key: any) => {
-    if (typeof window !== "undefined") {
-      return window.localStorage.getItem(key);
-    }
-  };
-  const [todoList, setTodoList] = React.useState(
-    JSON.parse(getFromStorage("todoList") || "[]")
-  );
+  // States
+  const { user, setUser } = props;
+  const default_data = user.todoList;
+  const [todoList, setTodoList] = useState(user.todoList);
 
+  // Log Out Function
   function logOut() {
     signOut(auth);
   }
+
+  // Update DB
+  useEffect(() => {
+    if (todoList != default_data) {
+      let u = user;
+      u.todoList = todoList;
+      const updateUser = async (u: any) => {
+        const update = await setDoc(doc(db, "users", u.id), u);
+      };
+      updateUser(u).then(() => {
+        setUser(u);
+      });
+      console.log("updated");
+    } else {
+    }
+  }, [todoList]);
+
+  // Update local TodoList
+  useEffect(() => {
+    setTodoList(user.todoList);
+  }, [user]);
 
   return (
     <div>

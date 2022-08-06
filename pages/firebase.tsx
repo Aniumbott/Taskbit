@@ -1,4 +1,4 @@
-// Import Modules
+// Import Components
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";

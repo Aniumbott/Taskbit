@@ -4,7 +4,7 @@ import { doc, setDoc, getDoc } from "@firebase/firestore";
 import { useState } from "react";
 
 // Import Components
-import TodoHome from "./TodoHome";
+import TodoHome from "./TodoHome.page";
 import base from "../pages/firebase";
 
 // Main function

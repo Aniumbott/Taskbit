@@ -3,7 +3,7 @@ import React from "react";
 import { Divider, Text } from "@mantine/core";
 
 // Import Components
-import TodoItem from "./TodoItem";
+import TodoItem from "./TodoItem.page";
 
 // Main Function
 function Remaining(props: any) {

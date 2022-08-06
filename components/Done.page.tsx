@@ -3,7 +3,7 @@ import { Divider, Text } from "@mantine/core";
 import React from "react";
 
 // Import Components
-import TodoItem from "./TodoItem";
+import TodoItem from "./TodoItem.page";
 
 // MAin Function
 function Done(props: any) {

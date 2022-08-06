@@ -6,9 +6,9 @@ import { doc, setDoc } from "firebase/firestore";
 
 // Import Components
 import base from "../pages/firebase";
-import CreateTodo from "./CreateTodo";
-import Done from "./Done";
-import Remaining from "./Remaining";
+import CreateTodo from "./CreateTodo.page";
+import Done from "./Done.page";
+import Remaining from "./Remaining.page";
 
 // Main Function
 function TodoHome(props: any) {

@@ -12,10 +12,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 // Import Components
 import Head from "next/head";
-import GitHubCorner from "../components/GitHubCorner";
-import SignIn from "../components/SignIn";
-import ThemeToggle from "../components/ThemeToggle";
-import SetUser from "../components/SetUser";
+import GitHubCorner from "../components/GitHubCorner.page";
+import SignIn from "../components/SignIn.page";
+import ThemeToggle from "../components/ThemeToggle.page";
+import SetUser from "../components/SetUser.page";
 import base from "./firebase";
 
 // Main Function

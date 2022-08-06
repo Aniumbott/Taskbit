@@ -15,7 +15,6 @@ import Link from "next/link";
 // Coponents
 // import bg from "../images/5.jpg";
 import logo from "../public/next-todo-favicon.png";
-import { heights } from "@mantine/core/lib/components/Button/Button.styles";
 
 // Main function
 function SignIn() {

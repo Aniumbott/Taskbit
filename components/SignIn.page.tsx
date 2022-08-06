@@ -18,7 +18,14 @@ function SignIn() {
   // Sign-In function
   function signInWithGoogle() {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).catch(() => {});
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        console.log(error);
+      });
   }
 
   return (

@@ -18,14 +18,7 @@ function SignIn() {
   // Sign-In function
   function signInWithGoogle() {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        console.log(error);
-      });
+    signInWithPopup(auth, provider).catch(() => {});
   }
 
   return (
@@ -64,8 +57,6 @@ function SignIn() {
           </Button>
         </Card>
       </div>
-      {/* <h1>jknfvjknkvnf </h1>
-       */}
       <style>
         {`
         .sign-in{

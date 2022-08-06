@@ -1,23 +1,20 @@
-// Additionals
+// Import Modules
 import React from "react";
-// import styled from "styled-components";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../pages/firebase";
+import Image from "next/image";
 import { Button } from "@mantine/core";
 import { Card } from "@mantine/core";
-import Image from "next/image";
-import { Group } from "@mantine/core";
 import { Text } from "@mantine/core";
-import { Badge } from "@mantine/core";
-import { useRef } from "react";
 import { BrandGoogle } from "tabler-icons-react";
-import Link from "next/link";
-// Coponents
-// import bg from "../images/5.jpg";
+
+// Import Components
 import logo from "../public/next-todo-favicon.png";
+import base from "../pages/firebase";
 
 // Main function
 function SignIn() {
+  const { auth } = base;
+
   // Sign-In function
   function signInWithGoogle() {
     const provider = new GoogleAuthProvider();

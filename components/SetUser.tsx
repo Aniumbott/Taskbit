@@ -1,12 +1,15 @@
-// Additionals
+// Import Modules
 import React, { useEffect } from "react";
 import { doc, setDoc, getDoc } from "@firebase/firestore";
-import { db } from "../pages/firebase";
-import TodoHome from "./TodoHome";
-import { auth } from "../pages/firebase";
 import { useState } from "react";
+
+// Import Components
+import TodoHome from "./TodoHome";
+import base from "../pages/firebase";
+
 // Main function
 function SetUser() {
+  const { auth, db } = base;
   // User State
   const currentUser =
     auth.currentUser != null

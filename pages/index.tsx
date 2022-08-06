@@ -1,4 +1,4 @@
-// Modules
+// Import Modules
 import type { NextPage } from "next";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
@@ -9,17 +9,18 @@ import {
   ColorScheme,
 } from "@mantine/core";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase";
 
-// Components
+// Import Components
 import Head from "next/head";
 import GitHubCorner from "../components/GitHubCorner";
 import SignIn from "../components/SignIn";
 import ThemeToggle from "../components/ThemeToggle";
 import SetUser from "../components/SetUser";
+import base from "./firebase";
 
 // Main Function
 const Home: NextPage = () => {
+  const auth = base.auth;
   const [isloged] = useAuthState(auth);
   const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
   const toggleColorScheme = (value?: ColorScheme) =>

@@ -1,5 +1,8 @@
+// Import Modules
 import React from "react";
 import { Divider, Text } from "@mantine/core";
+
+// Import Components
 import TodoItem from "./TodoItem";
 
 // Main Function

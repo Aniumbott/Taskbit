@@ -1,16 +1,19 @@
+// Import Modules
 import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../pages/firebase";
+import { Button } from "@mantine/core";
+import { doc, setDoc } from "firebase/firestore";
+
+// Import Components
+import base from "../pages/firebase";
 import CreateTodo from "./CreateTodo";
 import Done from "./Done";
 import Remaining from "./Remaining";
-import { Button } from "@mantine/core";
-import { db } from "../pages/firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
 
 // Main Function
 function TodoHome(props: any) {
   // States
+  const { auth, db } = base;
   const { user, setUser } = props;
   const default_data = user.todoList;
   const [todoList, setTodoList] = useState(user.todoList);

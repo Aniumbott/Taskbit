@@ -9,10 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mantine/core": "^4.0.8",
-    "@mantine/hooks": "^4.0.8",
+    "@emotion/react": "^11.10.0",
+    "@mantine/core": "^5.0.3",
+    "@mantine/hooks": "^5.0.3",
     "@mantine/next": "^4.0.8",
-    "@mantine/rte": "^3.4.3",
+    "@mantine/rte": "^5.0.3",
     "@uiw/react-github-corners": "^1.5.3",
     "core-js": "^3.24.1",
     "dotenv": "^16.0.1",

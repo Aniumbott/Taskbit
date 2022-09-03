@@ -7,7 +7,7 @@ function GitHubCorner() {
   return (
     <GitHubCorners
       direction="right"
-      href="https://github.com/Aniumbott/next-todo"
+      href="https://github.com/Aniumbott/taskbit"
     />
   );
 }

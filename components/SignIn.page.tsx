@@ -8,7 +8,7 @@ import { Text } from "@mantine/core";
 import { BrandGoogle } from "tabler-icons-react";
 
 // Import Components
-import logo from "../public/next-todo-favicon.png";
+import logo from "../public/taskbit-favicon.png";
 import base from "../pages/firebase";
 
 // Main function
